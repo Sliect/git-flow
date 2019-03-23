@@ -1,5 +1,11 @@
 # git-flow
 
+> 开发阶段: 在develop分支上拉出feature分支进行开发
+>
+> 联调阶段/测试阶段: 新建联调分支并合并feature分支进行联调、测试
+>
+> 发布阶段: 将release分支合并到master分支 进行发布
+
 ## 初始化
 > git branch develop
 >
@@ -47,3 +53,10 @@
 > git push
 >
 > git branch -d issue-#001
+
+## 回滚代码
+> git checkout develop
+>
+> git log
+>
+> git reset --hard 36da39b
