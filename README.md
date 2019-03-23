@@ -44,6 +44,10 @@
 > git push
 >
 > git branch -d release-0.1
+>
+> git tag -a v-0.1 -m "Initial public release" master
+>
+> git push --tags
 
 ## 修复Bug
 > git checkout -b issue-#001 master
