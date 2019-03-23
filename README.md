@@ -54,9 +54,12 @@
 >
 > git branch -d issue-#001
 
-## 回滚代码
+## reset回滚代码
 > git checkout develop
 >
 > git log
 >
 > git reset --hard 36da39b
+
+## revert回滚代码
+> git revert HEAD
