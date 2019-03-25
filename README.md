@@ -82,3 +82,20 @@
 
 ## revert回滚代码
 > git revert HEAD
+
+## 代码处于冲突状态
+> 解决冲突后
+> git add
+> git commit
+>
+> git merge --abort 撤销merge
+
+## 突发事件处理
+> git add .
+> git stash
+> 切换分支救火后切回原来的分支
+> git stashpop
+
+## 查看HEAD移动历史
+> git reflog 查看所有HEAD移动历史
+> git reflog master 查看master分支的HEAD移动历史
