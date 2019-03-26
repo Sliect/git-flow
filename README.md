@@ -20,6 +20,7 @@
 > git checkout -b release-0.1 新建并切换到release-0.1分支
 >
 > git merge some-feature
+>
 > git merge other-feature
 >
 > 反馈问题 => 在各自功能分支上进行修改 => 合并功能分支直至没有问题
@@ -34,6 +35,7 @@
 > git push 推送分支
 >
 > git branch -d some-feature 删除功能分支
+>
 > git branch -d other-feature
 
 ## 发布版本
@@ -55,7 +57,9 @@
 > git checkout master
 >
 > git status
+>
 > git add
+>
 > git commit
 >
 > git checkout master
@@ -85,7 +89,9 @@
 
 ## 代码处于冲突状态
 > 解决冲突后
+>
 > git add
+>
 > git commit
 >
 > git merge --abort 撤销merge
@@ -93,9 +99,40 @@
 ## 突发事件处理
 > git add .
 > git stash
+>
 > 切换分支救火后切回原来的分支
-> git stashpop
+>
+> git stash pop
 
 ## 查看HEAD移动历史
 > git reflog 查看所有HEAD移动历史
+>
 > git reflog master 查看master分支的HEAD移动历史
+
+## rebase对历史操作的修改
+> git checkout feature
+>
+> git rebase master 找到master和feature的最近共同祖先，然后对比当前分支相对于该祖先的历次提交，提取相应的修改并存为临时文件，以master为基，将临时文件的修改依次应用
+>
+> git checkout master
+>
+> git merge feature 快进合并，将HEAD指向rebase之后的最新节点
+
+> 上述操作可以简化为
+>
+> git rebase master feature
+>
+> git checkout master
+>
+> git merge feature
+
+> 注意：rebase不能在公共分支上进行操作，但是可以在私有分支上rebase公共分支，e.g: git rebase master
+
+## 丢弃或修改不是最新的提交
+> git rebase -i HEAD^^ 进入编辑页面，将至上而下展示从旧到新的提交节点，将pick改为edit可以修改之前的提交内容，将pick这行删除可以撤销这次提交
+
+> git rebase --onto [目标] [起点] [终点] 找到目标和终点的最近共同祖先，不包含起点的提交节点，然后将这些节点保存为临时文件，以目标为基，将临时文件的修改依次应用
+>
+> git checkout [目标]
+>
+> git merge [终点] 快进合并
